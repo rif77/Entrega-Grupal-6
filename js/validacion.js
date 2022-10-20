@@ -17,17 +17,18 @@
         }, false)
       })
   })()
-;
 
-  let password1 = document.getElementById("password1")
-  let password2 = document.getElementById("password2")
-  let formularioDeRegistro = document.getElementById("formularioDeRegistro")
 
-  formularioDeRegistro.addEventListener('submit', function(event){
-    event.preventDefault
-    if((password1.value.length > 5) && (password1.value === password2.value)){
-        form.classList.add('was-validated')
-    } else {
-        console.log("la contraseña es corta o no coinciden")
-    }
-  })
+let password1 = document.getElementById("password1")
+let password2 = document.getElementById("password2")
+let formularioDeRegistro = document.getElementById("formularioDeRegistro")
+
+formularioDeRegistro.addEventListener('submit', function(event){
+  event.preventDefault
+  if (password1.value === password2.value){
+    console.log("la contraseña es correcta")
+  } else {
+      console.log("la contraseñas no coinciden")
+  }
+}
+)
