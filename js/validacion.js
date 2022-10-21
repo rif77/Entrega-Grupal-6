@@ -23,12 +23,14 @@ let password1 = document.getElementById("password1")
 let password2 = document.getElementById("password2")
 let formularioDeRegistro = document.getElementById("formularioDeRegistro")
 
-formularioDeRegistro.addEventListener('submit', function(event){
+formularioDeRegistro.addEventListener('oninput', function(event){
   event.preventDefault
   if (password1.value === password2.value){
-    console.log("la contraseña es correcta")
+    console.log("la contraseña es correcta")    
   } else {
       console.log("la contraseñas no coinciden")
+      password1.setCustomValidity('nope')
+      password2.setCustomValidity('nope')
   }
 }
 )
