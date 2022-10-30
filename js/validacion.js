@@ -1,58 +1,84 @@
 (function () {
-    'use strict'
-  
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
-  
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-  
-          form.classList.add('was-validated')
-        }, false)
-      })
-  })()
+  'use strict'
 
 
+  var forms = document.querySelectorAll('.needs-validation')
+
+
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+let nombre = document.getElementById("nombre")
+let apellido = document.getElementById("apellido")
+let email = document.getElementById('email')
 let password1 = document.getElementById("password1")
 let password2 = document.getElementById("password2")
-let botonconfirmar = document.getElementById("botonconfirmar")
-let modalspam = document.getElementById('modalspam')
+let formularioDeRegistro = document.getElementById("formularioDeRegistro")
+let botonConfirmar = document.getElementById('botonConfirmar')
+let terminos = document.getElementById('terminos')
+let terminos2 = document.getElementById('terminos2')
+let modalspan = document.getElementById('modalspan')
+let verificador= ""
 
-password1.addEventListener('input', function(event){
-  if (password1.value.lenght < 6){
-    password1.setCustomValidity('invalid');    
-  } else {
-      event.target.setCustomValidity('');
-  }
-  if((password1.value != password2.value)){
-      password2.setCustomValidity('invalid')
-  } else {
-    password2.setCustomValidity('')
-    }
-  }
-)
+password1.addEventListener('input', function  (event){
 
-password2.addEventListener('input',function(event){
-  if((password1.value != password2.value)){
-    password2.setCustomValidity('invalid')
-  } else {
-    event.target.setCustomValidity('')
-  }
+if((password1.value.length < 6)){
+
+  password1.setCustomValidity('invalid')
+} else {
+  event.target.setCustomValidity('');
 }
-)
+if((password1.value != password2.value)){
 
-botonconfirmar.addEventListener('click', function (){
-  if(!terminos.checked){
-    modalspam.classList.remove('d-none')
-  }else{
-    modalspam.classList.add('d-none')
-  }
+  password2.setCustomValidity('invalid')
+} else {
+  password2.setCustomValidity('')
+}
+})
+password2.addEventListener('input', function  (event){
+if(password1.value != password2.value){
+  password2.setCustomValidity('invalid')
+
+} else {
+  event.target.setCustomValidity('');
+}
 })
 
-console.log(password1)
+terminos.addEventListener("click", function (){
+if(verificador !=""){
+if(terminos.checked){
+  terminos2.style.color='black'
+  modalspan.classList.add('d-none')
+}if(!terminos.checked){
+  terminos2.style.color='#ff0000'
+  modalspan.classList.remove('d-none')
+}
+}
+})
+
+
+
+botonConfirmar.addEventListener('click', function (){
+verificador="boton presionado"
+if(!terminos.checked){
+ modalspan.classList.remove('d-none')
+ terminos2.style.color='#ff0000'
+}else {
+  modalspan.classList.add('d-none')
+}
+if ((terminos.checked) &&(password1.value.length > 5) &&(password1.value === password2.value)&&(nombre.value.length != 0)&&(apellido.value.length != 0)){
+  alert("exitoso")
+}
+
+})
+
