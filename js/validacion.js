@@ -21,16 +21,38 @@
 
 let password1 = document.getElementById("password1")
 let password2 = document.getElementById("password2")
-let formularioDeRegistro = document.getElementById("formularioDeRegistro")
+let botonconfirmar = document.getElementById("botonconfirmar")
+let modalspam = document.getElementById('modalspam')
 
-formularioDeRegistro.addEventListener('oninput', function(event){
-  event.preventDefault
-  if (password1.value === password2.value){
-    console.log("la contraseña es correcta")    
+password1.addEventListener('input', function(event){
+  if (password1.value.lenght < 6){
+    password1.setCustomValidity('invalid');    
   } else {
-      console.log("la contraseñas no coinciden")
-      password1.setCustomValidity('nope')
-      password2.setCustomValidity('nope')
+      event.target.setCustomValidity('');
+  }
+  if((password1.value != password2.value)){
+      password2.setCustomValidity('invalid')
+  } else {
+    password2.setCustomValidity('')
+    }
+  }
+)
+
+password2.addEventListener('input',function(event){
+  if((password1.value != password2.value)){
+    password2.setCustomValidity('invalid')
+  } else {
+    event.target.setCustomValidity('')
   }
 }
 )
+
+botonconfirmar.addEventListener('click', function (){
+  if(!terminos.checked){
+    modalspam.classList.remove('d-none')
+  }else{
+    modalspam.classList.add('d-none')
+  }
+})
+
+console.log(password1)
